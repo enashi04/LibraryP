@@ -2,6 +2,7 @@ from library_lite import Library, User, Writer, Genre
 
 # Initialize the library
 library = Library()
+library.welcome()  # Display welcome message
 
 # Create authors
 rowling = Writer("J.K. Rowling", 55)
@@ -10,7 +11,7 @@ exupery = Writer("Antoine de Saint-Exupéry", 44)
 moliere = Writer("Molière", 51)
 stendhal = Writer("Stendhal", 67)
 
-# Create books (automatiquement ajoutés à la bibliothèque via write)
+# Create books (automatically adds them to the library by calling writer.write())
 harry_potter = rowling.write("Harry Potter", nb_pages=308, genres={Genre.FANTASY})
 miserables = v_hugo.write("Les Misérables", nb_pages=1664, genres={Genre.HISTORY})
 petit_prince = exupery.write("Le Petit Prince", nb_pages=120, genres={Genre.CHILDREN})

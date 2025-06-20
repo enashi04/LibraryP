@@ -68,7 +68,7 @@ def main():
                 for idx, book in enumerate(user_borrowed_books, 1):
                     print(f"{idx}. {book.title}")
                 try:
-                    idx = int(input("Numéro du livre à rendre : ")) 
+                    idx = int(input("Numéro du livre à rendre : ")) - 1
                     if 0 <= idx < len(user_borrowed_books):
                         user.returnBook(user_borrowed_books[idx])
                         print(Fore.GREEN + "Livre rendu avec succès.")
@@ -79,7 +79,7 @@ def main():
             pause()
 
         elif choice == "4":
-            print(Fore.MAGENTA + "\n👋 À bientôt dans ta librairie magique ! ✨")
+            print(Fore.MAGENTA + "\n À bientôt dans ta librairie magique ! ✨")
             break
 
         else:

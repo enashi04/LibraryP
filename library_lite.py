@@ -159,6 +159,9 @@ class Library(BookEventListener, AvailableEventGenerator, metaclass=Singleton):
 
     def __repr__(self):
         return f"[{type(self).__name__}] {self.name}."
+    #Afficher un message de bienvenue
+    def welcome(self):
+        print(f"Welcome to the {self.name} ✨!")
 
     # To Do: add a book in stock. If the book title is in the "reserved" dict, create the associated availableEvent
     def __addBook(self, book: Book, qte: int = 1) -> None:
