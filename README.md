@@ -1,15 +1,29 @@
-# LibraryP
-A playful, event-driven library management system in Python designed with object-oriented principles.
+# My Little Library — Event-Driven Book Management App
 
-It features a singleton library, book and availability event systems, and interactive user-author relationships.
+A playful, event-driven library management system in Python, designed with clean object-oriented architecture.
+This project simulates a library where authors create books, users follow them, and events trigger book availability updates.
 
-This project also includes a child-friendly command-line interface using colorama for colorful and engaging interactions.
+Includes two interactive modes:
 
-🔧 Features:
-- Book creation by authors (with optional co-authors)
-- Event-based notifications when books are published or become available
-- Users can follow authors and reserve books
-- Interactive terminal interface (CLI) with fun visuals
-- Clean architecture using OOP (Singleton, Observer, Inheritance, etc.)
+- A classic command-line interface (CLI) using standard prints.
+- A colorful and child-friendly version powered by colorama, with emojis and vibrant text output.
 
-🏫 For educational purposes or as a base for more advanced library systems!
+Features:
+
+📖 Book creation by writers (with optional co-authors)
+
+🔔 Event system for book publication and availability (Observer pattern)
+
+🧍 Users can register, borrow, return, and reserve books
+
+🧑‍🎓 Users can follow authors to receive real-time book release notifications
+
+Two entry points (mains):
+
+- main_lite.py: Simple terminal interaction
+- main_colorama.py: Fun, colorful CLI using colorama
+
+-> Singleton design for the library
+
+-> Built on solid OOP concepts: inheritance, enums, encapsulation, and abstract base classes
+
