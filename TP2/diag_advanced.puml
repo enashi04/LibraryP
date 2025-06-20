@@ -1,0 +1,89 @@
+@startuml
+
+' ENUM
+enum Genre {
+  FICTION
+  NON_FICTION
+  MYSTERY
+  FANTASY
+  SCIFI
+  BIOGRAPHY
+  HISTORY
+  ROMANCE
+  THRILLER
+  CHILDREN
+  ADVENTURE
+}
+
+' ABSTRACT CLASS
+abstract class Person {
+  - name: str
+  - age: int
+  + __repr__(): str
+}
+
+class Writer {
+  - written: Set<Book>
+  + write(title: str, nb_pages: int, genres: set, coauthor: list): Book
+}
+
+class User {
+  - __borrowed: List<Book>
+  - read: List<Book>
+  + readBook(book: Book)
+  + getListTitleRead(): List<str>
+  + getDictGenreRead(): Dict<Genre, int>
+  + borrowRandomBook(): None
+  + obtainBook(book: Book): None
+  + returnBook(book: Book): None
+  + nbBorrowed(): int
+}
+
+class Book {
+  - title: str
+  - nb_pages: int
+  - genres: set<Genre>
+  - authors: set<Writer>
+  + __eq__(other: Book): bool
+  + __hash__(): int
+  + getListAuthorsName(): List<str>
+  + addAuthor(author: Writer)
+  + __repr__(): str
+}
+
+class ProxyBook {
+}
+
+class Library {
+  - __registered: Set<User>
+  - __available: Dict<Book, int>
+  - __followed: Set<Writer>
+  + register(user: User)
+  + unregister(user: User)
+  + follow(writer: Writer)
+  + notice(book: Book, writer: Writer)
+  + consult(user: User): List<str>
+  + borrow(title: str, user: User): Book|None
+  + returnBook(book: Book)
+}
+
+class Singleton {
+  - _instances: dict
+  + __call__()
+}
+
+' RELATIONS
+Person <|-- Writer
+Person <|-- User
+Book <|-- ProxyBook
+Library ..|> Singleton
+
+Writer --> "0..*" Book : writes >
+Book --> "1..*" Writer : authors
+User --> "0..*" Book : reads >
+User --> "0..*" Book : borrows >
+Library --> "0..*" User : registers >
+Library --> "0..*" Book : manages >
+Library --> "0..*" Writer : follows >
+
+@enduml

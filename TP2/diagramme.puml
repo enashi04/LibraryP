@@ -1,0 +1,86 @@
+@startuml 
+skinparam classAttributeIconSize 0
+
+interface Observer #Lavender{
+    +update(book: Book)
+}
+
+class Subject #Beige{
+    - observers: Map<Book, List<Observer>>
+    +add_observer(book: Book, observer: Observer)
+    +remove_observer(book: Book, observer: Observer)
+    +notify_observers(book: Book)
+}
+
+enum Genre #FloralWhite{
+    FICTION
+    NON_FICTION
+    MYSTERY
+    FANTASY
+    SCIFI
+    BIOGRAPHY
+    HISTORY
+    ROMANCE
+    THRILLER
+    CHILDREN
+    ADVENTURE
+}
+
+
+class Person #LavenderBlush{
+    - name: str
+    - age: int
+    - books_read: dict
+    +greet(): str
+    +read_book(book: Book)
+    +number_of_books_read(): int
+    +has_read_book(book: Book): bool
+    +read_genre(genre: Genre): List<Book>
+    +update(book: Book)
+}
+
+class Author #LavenderBlush{
+    - books_written: list
+    +write_book(title: str, year: int, genre: Genre): Book
+}
+
+class Book #PapayaWhip{
+    - title: str
+    - author: Author
+    - year: int
+    - genre: Genre
+    +__repr__()
+}
+
+class Library #PeachPuff{
+    - books: dict
+    - users: list
+    - list_wait: dict
+    +add_book(book: Book)
+    +add_user(user: Person)
+    +borrow_book(user: Person, book: Book)
+    +return_book(user: Person, book: Book)
+    +display_book_availability()
+    +choose_random_book(user: Person): Book
+    +waiting_list(book: Book, user: Person)
+}
+
+class BookProxy #PaleGoldenRod{
+    - book: Book
+    - library: Library
+    +borrow(user: Person)
+    +return_book(user: Person)
+}
+
+
+Observer <|.. Person
+Person <|-- Author
+Subject <|-- Library
+Library --> Book
+Library --> Person
+Book --> Author
+BookProxy --> Book
+BookProxy --> Library
+Library --> Genre
+
+@enduml
